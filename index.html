@@ -58,7 +58,8 @@
     <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
     <link rel="stylesheet" href="assets/css/style.purged.css" />
     <!-- Place this script tag in the <head> of your website -->
- 
+ <!-- Place this script tag in the <head> of your website -->
+<script src="https://app.fraudclicks.in/tracker.js?key=sHVwcXjv5gt6F2D8vASZB9-WNnM9zKRp" async></script>
     <style>
       @media (max-width: 991px) {
         .hero-main-title {
@@ -614,7 +615,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
       <li><a href="#testimonials">Testimonials</a></li>
       <li><a href="#gallery">Our Products</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact-form-redirect">Contact</a></li>
     </ul>
   </div>
 </div>
@@ -654,19 +655,19 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
           <a href="#contact-form-redirect" class="common-btn primary anim-pulse me-2">
             <span>Get Free Home-Delivery Quote</span>
           </a>
-          <a href="tel:+91XXXXXXXXXX" class="common-btn secondary anim-pulse" style="margin-bottom: 20px;">
+          <a href="#contact-form-redirect" class="common-btn secondary anim-pulse" style="margin-bottom: 20px;">
             <span>Call to Order Now</span>
           </a>
         </div>
       </div>
 
       <!-- Right Column: Form -->
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12" id="contact-form-redirect">
         <div class="lead-form-card">
           <h2 class="form-title">Start Your Farm-Fresh Milk Delivery</h2>
           <p class="form-subtitle">Fill this quick form and our team will confirm your route & start date.</p>
 
-<form class="valentia-form" action="thankyou.html" method="post">
+<form class="valentia-form" action="thankyou.html" method="post" data-fraudclicks-key>
   <div class="row">
     <div class="col-12 mb-3">
       <input type="text" name="name" class="form-control" placeholder="Full Name" required>
@@ -954,11 +955,12 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   <div class="container text-center">
     <h2 class="section-heading">See where your milk comes from</h2>
     <p class="section-text">
-      Take a look at our cows, farm, and process in the 
-      <a href="https://valentia.in/gallery" class="gallery-link">gallery</a>.
+      Take a look at our cows, farm, and process in the gallery.
+     
     </p>
 
-    <a href="https://valentia.in/gallery" class="btn btn-primary farm-cta">View Our Farm Gallery</a>
+    <a href="#contact-form-redirect" class="btn btn-primary farm-cta">View Our Farm Gallery</a>
+
   </div>
 </section>
 <!-- FAQ Section -->
@@ -1011,6 +1013,40 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   </div>
 </section>
 
+<!-- Contact Form Section -->
+<section id="contact" class="contact-section py-5 ak-whiteLite-bg">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="lead-form-card">
+          <h2 class="form-title">Get in Touch</h2>
+          <p class="form-subtitle">Have questions or want to start your delivery? Fill the form below and we’ll contact you shortly.</p>
+
+          <form class="contact-form" action="./thankyou.html" method="post" data-fraudclicks-key>
+            <div class="row">
+              <div class="col-12 mb-3">
+                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+              </div>
+              <div class="col-12 mb-3">
+                <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+              </div>
+              <div class="col-12 mb-3">
+                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+              </div>
+            
+            </div>
+            <div class="text-center">
+             <button type="submit" class="contact-btn w-50">
+  <span>Send Message</span>
+</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     
     <!-- Strat Contact -->
@@ -1025,7 +1061,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         
         <div class="footer-links">
           <a href="https://valentia.in/privacy-policy">Privacy Policy</a>
-          <a href="delete-personal-info.html">Request For Delete Personal Information</a>
+          
         </div>
       </div>
 
@@ -1090,7 +1126,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
   </a>
 
   <!-- Call button -->
-  <a href="tel:9935660033" class="sticky-nav-item">
+  <a href="#contact-form-redirect" class="sticky-nav-item">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -1381,43 +1417,70 @@ document.addEventListener("DOMContentLoaded", function () {
   backdrop.addEventListener('click', () => drawer.classList.remove('active'));
   closeBtn.addEventListener('click', () => drawer.classList.remove('active'));
 </script>
-<script>
-document.querySelector('.valentia-form').addEventListener('submit', async function(e) {
-  e.preventDefault(); // stop normal form submission
-  console.log("Form submission triggered ✅");
-
-  const form = e.target;
-  const data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value
-  };
-
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbyYNL-KADywCsLi7GGmxUkHl_j-cSTfb9iHVP7yo591Q9vfH8-hhWTx_zyM-qaqfYc/exec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    console.log("Response from Google:", result);
-
-    if (result.result === "success") {
-      window.location.href = form.action; // thankyou.html
-    } else {
-      alert("Error: " + result.message);
-    }
-
-  } catch (err) {
-    console.error("Fetch error:", err);
-    alert("Network error. Please try again.");
-  }
-});
-</script>
-
-
   
+<script>
+(function(){
+  const TARGET_ID = 'hero-form';
+  const header = document.querySelector('header.ak-site_header') || document.querySelector('header');
+
+  function updateHeaderOffset(){
+    const h = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    // expose the header height to CSS as a variable (useful if you want scroll-margin in CSS too)
+    document.documentElement.style.setProperty('--header-offset', h + 'px');
+    // also set a direct scrollMarginTop on the target (extra gap)
+    const target = document.getElementById(TARGET_ID);
+    if (target) target.style.scrollMarginTop = (h + 12) + 'px';
+  }
+
+  function smoothScrollToElementById(id){
+    const el = document.getElementById(id);
+    if (!el) return;
+    const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-offset')) || 0;
+    const gap = 12; // extra breathing space
+    const top = el.getBoundingClientRect().top + window.pageYOffset - headerHeight - gap;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  // Update on load/resize and when header changes
+  window.addEventListener('load', updateHeaderOffset);
+  window.addEventListener('resize', updateHeaderOffset);
+  if (window.ResizeObserver && header) {
+    new ResizeObserver(updateHeaderOffset).observe(header);
+  }
+
+  // Intercept in-page anchor clicks and apply offset scroll
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    const id = href.replace('#','');
+    if (!document.getElementById(id)) return; // allow default if no target
+    e.preventDefault();
+    smoothScrollToElementById(id);
+    // update URL without jumping
+    history.pushState(null, '', '#' + id);
+  });
+
+  // If page loads with a hash, scroll to it after layout stabilizes
+  window.addEventListener('load', function(){
+    if (location.hash) {
+      setTimeout(() => smoothScrollToElementById(location.hash.replace('#','')), 60);
+    }
+  });
+
+  // initial run
+  updateHeaderOffset();
+})();
+</script>
+<script>
+  document.querySelectorAll(".contact-form").forEach(form => {
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();  // prevent actual reload
+      window.location.href = "thankyou.html";  // redirect to thankyou page
+    });
+  });
+</script>
 
 
   </body>
