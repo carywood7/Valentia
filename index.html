@@ -47,7 +47,8 @@
       href="assets/img/LP Images/0obdvbq_1731327335_530197907_med.webp"
       as="image"
     />
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- Favicon Icon -->
     <link rel="icon" href="assets/img/favicon.svg" />
     <!-- Site Title -->
@@ -465,6 +466,52 @@
       #specification .col-lg-3.col-md-6 {
         margin-bottom: 2rem;
       }
+      /* Mobile Drawer */
+#mobile-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* hidden until activated */
+  z-index: 2000;
+}
+
+#mobile-drawer.active {
+  display: block;
+}
+
+#mobile-drawer .drawer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+#mobile-drawer .drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background: #111; /* black drawer */
+  color: #fff;      /* text white */
+  padding: 2rem 1rem;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.4);
+  overflow-y: auto;
+}
+
+#mobile-drawer .drawer-panel a {
+  display: block;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff !important;
+}
+
+#mobile-drawer .drawer-panel a:hover {
+  color: #4CAF50 !important; /* parrot green hover */
+}
+
     </style>
     <!-- Event snippet for Whatsapp clicks conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
@@ -508,18 +555,22 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         <!-- Left: Logo -->
         <div class="ak-main-header-left">
           <a class="ak-site_branding nav" href="index.html">
-           <img
-  src="assets/img/valentialogo.webp"
-  alt="Valentia Logo"
-  class="nav-logo"
-/>
-
+            <img
+              src="assets/img/valentialogo.webp"
+              alt="Valentia Logo"
+              class="nav-logo"
+            />
           </a>
         </div>
 
-        <!-- Center: Navigation -->
+        <!-- Floating Menu Button (mobile only) -->
+        <button class="fab-menu" aria-label="Toggle navigation">
+          ☰
+        </button>
+
+        <!-- Center: Desktop Navigation -->
         <div class="ak-main-header-center">
-          <nav class="ak-nav ak-medium">
+          <nav class="ak-nav ak-medium" id="site-menu">
             <ul class="ak-nav_list">
               <li class="ak-nav_list_item"><a href="#hero">Home</a></li>
               <li class="ak-nav_list_item"><a href="#about">About Us</a></li>
@@ -527,7 +578,6 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
               <li class="ak-nav_list_item"><a href="#testimonials">Testimonials</a></li>
               <li class="ak-nav_list_item"><a href="#gallery">Our Products</a></li>
               <li class="ak-nav_list_item"><a href="#faq">FAQ</a></li>
-            
             </ul>
           </nav>
         </div>
@@ -550,15 +600,31 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
     </div>
   </div>
   <div class="nav-bar-border"></div>
-  
 </header>
+
+<!-- Mobile Drawer Navigation -->
+<div id="mobile-drawer">
+  <div class="drawer-backdrop" data-action="close" aria-hidden="true"></div>
+  <div class="drawer-panel" role="dialog" aria-label="Mobile menu">
+    <button class="drawer-close" aria-label="Close menu">&times;</button>
+    <ul class="ak-nav_list">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#benefits">Why Choose Us</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#gallery">Our Products</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</div>
 
 
     <!-- Start Hero -->
 <section id="hero" class="hero-section">
   <!-- Background -->
   <div class="ak-hero-featured">
-    <img src="assets/img/hero.webp"
+    <img src="assets/img/valentia-hero.webp"
          class="ak-hero-bg" alt="Fresh Milk Farm">
     <div class="hero-overlay"></div>
   </div>
@@ -588,7 +654,7 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
           <a href="#contact-form-redirect" class="common-btn primary anim-pulse me-2">
             <span>Get Free Home-Delivery Quote</span>
           </a>
-          <a href="tel:+91XXXXXXXXXX" class="common-btn secondary anim-pulse">
+          <a href="tel:+91XXXXXXXXXX" class="common-btn secondary anim-pulse" style="margin-bottom: 20px;">
             <span>Call to Order Now</span>
           </a>
         </div>
@@ -601,49 +667,25 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
           <p class="form-subtitle">Fill this quick form and our team will confirm your route & start date.</p>
 
 <form class="valentia-form" action="thankyou.html" method="post">
+  <div class="row">
+    <div class="col-12 mb-3">
+      <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+    </div>
+    <div class="col-12 mb-3">
+      <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required>
+    </div>
+    <div class="col-12 mb-3">
+      <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+    </div>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="common-btn primary anim-pulse w-100">
+      <span>Get My Delivery Quote</span>
+    </button>
+  </div>
+</form>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <input type="text" class="form-control" placeholder="Full Name" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <input type="tel" class="form-control" placeholder="Phone Number" required>
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <input type="text" class="form-control" placeholder="Area / Locality (Lucknow)" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                
-                <select class="form-control" required>
-                  <option value="" disabled selected>Daily Quantity (Litres)</option>
-                  <option value="0.5">0.5 Litre</option>
-                  <option value="1">1 Litre</option>
-                  <option value="2">2 Litres</option>
-                  <option value="3">3 Litres</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="mb-3">
-               <label for="start-date" class="form-label" style="color: black;">Preferred Start Date</label>
-              <input type="date" class="form-control" placeholder="Preferred Start Date">
-            </div>
-
-            <div class="mb-3">
-              <textarea class="form-control" rows="3" placeholder="Notes (Optional)"></textarea>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" class="common-btn primary anim-pulse w-100">
-                <span>Get My Delivery Quote</span>
-              </button>
-            </div>
-
-            <p class="form-assurance mt-3">✅ No spam. A Valentia representative will reach you within 1 business day.</p>
-          </form>
         </div>
       </div>
 
@@ -983,18 +1025,13 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
         
         <div class="footer-links">
           <a href="https://valentia.in/privacy-policy">Privacy Policy</a>
-       
+          <a href="delete-personal-info.html">Request For Delete Personal Information</a>
         </div>
       </div>
 
       <!-- Right side: app download + social -->
       <div class="footer-right">
-        <h5>Download Our Mobile App</h5>
-        <p>Download our app today.</p>
-         <a href="https://play.google.com/store/apps/details?id=com.w3bminds.valentia" target="_blank">
-          <img src="./assets/img/playstore.svg" 
-               alt="Get it on Google Play" 
-               class="google-play-badge" />
+
 
         <!-- Social Icons -->
         <div class="footer-social">
@@ -1078,6 +1115,22 @@ In your html page, add the snippet and call gtag_report_conversion when someone 
 </div>
 
     <!-- Script -->
+     <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".fab-menu");
+  const nav = document.querySelector(".ak-nav_list");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      console.log("Menu button clicked ✅"); // debug log
+      nav.classList.toggle("open");
+    });
+  } else {
+    console.log("⚠️ Toggle or nav not found");
+  }
+});
+</script>
+
     <script src="assets/js/plugins/jquery-3.7.1.min.js" defer></script>
     <script src="assets/js/form-handler.js" defer></script>
     <!-- Defer non-critical scripts -->
@@ -1156,6 +1209,216 @@ document.querySelector(".valentia-form").addEventListener("submit", function(e) 
   window.location.href = "thankyou.html"; // go to thankyou page
 });
 </script>
+<script>
+  (function () {
+    const btn = document.querySelector('.ak-menu-toggle');
+    const list = document.getElementById('site-menu');
+
+    if (!btn || !list) return;
+
+    btn.addEventListener('click', function () {
+      const isOpen = list.classList.toggle('is-open');
+      btn.classList.toggle('is-open', isOpen);
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.classList.toggle('no-scroll', isOpen); // optional lock scroll
+    });
+
+    // Optional: close on link click (single-page scroll)
+    list.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A' && list.classList.contains('is-open')) {
+        list.classList.remove('is-open');
+        btn.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('no-scroll');
+      }
+    });
+  })();
+</script>
+<script>
+  (function(){
+    const toggle = document.querySelector('.ak-menu-toggle');
+    const header = document.querySelector('header.ak-site_header');
+    const menu   = document.getElementById('site-menu');
+
+    if(!toggle || !header || !menu) return;
+
+    function closeMenu(){
+      header.classList.remove('ak-menu-open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+    function openMenu(){
+      header.classList.add('ak-menu-open');
+      toggle.setAttribute('aria-expanded','true');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = header.classList.contains('ak-menu-open');
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    // Close when clicking a link (optional)
+    menu.addEventListener('click', (e) => {
+      if(e.target.closest('a')) closeMenu();
+    });
+
+    // Close on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 991) closeMenu();
+    });
+  })();
+</script>
+<script>
+  const menuToggle = document.querySelector('.ak-menu-toggle');
+  const navMenu = document.getElementById('site-menu');
+
+  menuToggle.addEventListener('click', function () {
+    navMenu.querySelector('.ak-nav_list').classList.toggle('open');
+    this.classList.toggle('active');
+  });
+</script>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.ak-nav');
+
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".fab-menu");
+  const nav = document.querySelector(".ak-nav_list");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("show");
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".fab-menu");
+  const nav = document.querySelector(".ak-nav_list");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const toggle = document.querySelector(".fab-menu");
+
+  if (!toggle) {
+    console.warn("FAB toggle (.fab-menu) not found.");
+    return;
+  }
+
+  // Create the mobile drawer (only once)
+  const drawer = document.createElement("div");
+  drawer.id = "mobile-drawer";
+  drawer.innerHTML = `
+    <div class="drawer-backdrop" data-action="close" aria-hidden="true"></div>
+    <div class="drawer-panel" role="dialog" aria-label="Mobile menu">
+      <button class="drawer-close" aria-label="Close menu">&times;</button>
+      <ul class="ak-nav_list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#benefits">Why Choose Us</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Our Products</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  `;
+  document.body.appendChild(drawer);
+
+  const backdrop = drawer.querySelector(".drawer-backdrop");
+  const closeBtn = drawer.querySelector(".drawer-close");
+
+  function openDrawer() {
+    drawer.classList.add("open");
+    document.body.classList.add("drawer-open");
+  }
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    document.body.classList.remove("drawer-open");
+  }
+
+  // Toggle on FAB click
+  toggle.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (drawer.classList.contains("open")) closeDrawer();
+    else openDrawer();
+  });
+
+  // Close handlers
+  backdrop.addEventListener("click", closeDrawer);
+  closeBtn.addEventListener("click", closeDrawer);
+
+  // Close on Escape
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && drawer.classList.contains("open")) closeDrawer();
+  });
+
+  // Close when any menu link clicked
+  drawer.addEventListener("click", function (ev) {
+    if (ev.target.tagName === "A") closeDrawer();
+  });
+});
+</script>
+<script>
+  const fabMenu = document.querySelector('.fab-menu');
+  const drawer = document.getElementById('mobile-drawer');
+  const backdrop = drawer.querySelector('.drawer-backdrop');
+  const closeBtn = drawer.querySelector('.drawer-close');
+
+  fabMenu.addEventListener('click', () => drawer.classList.add('active'));
+  backdrop.addEventListener('click', () => drawer.classList.remove('active'));
+  closeBtn.addEventListener('click', () => drawer.classList.remove('active'));
+</script>
+<script>
+document.querySelector('.valentia-form').addEventListener('submit', async function(e) {
+  e.preventDefault(); // stop normal form submission
+  console.log("Form submission triggered ✅");
+
+  const form = e.target;
+  const data = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value
+  };
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbyYNL-KADywCsLi7GGmxUkHl_j-cSTfb9iHVP7yo591Q9vfH8-hhWTx_zyM-qaqfYc/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+    console.log("Response from Google:", result);
+
+    if (result.result === "success") {
+      window.location.href = form.action; // thankyou.html
+    } else {
+      alert("Error: " + result.message);
+    }
+
+  } catch (err) {
+    console.error("Fetch error:", err);
+    alert("Network error. Please try again.");
+  }
+});
+</script>
+
+
+  
+
 
   </body>
 </html>
