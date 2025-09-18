@@ -2882,3 +2882,91 @@ footer a:hover {
   margin: 0;
 }
 
+/* === Mobile: pin footer social icons to the left and lift them slightly === */
+@media (max-width: 767px) {
+  /* allow icons to escape any clipping */
+  footer.ak-footer,
+  footer.ak-footer .footer-content {
+    overflow: visible !important;
+  }
+
+  /* make sure the right column spans full width on small screens so icons can sit at left */
+  footer.ak-footer .footer-right {
+    width: 100% !important;
+    text-align: left !important;
+    display: block !important;
+    padding-left: 12px !important; /* small left inset so icons aren't flush to the edge */
+  }
+
+  /* final placement for the icons */
+  footer.ak-footer .footer-social {
+    display: flex !important;
+    justify-content: flex-start !important; /* force left alignment */
+    gap: 12px !important;
+    margin-top: -12px !important;    /* lift icons up — tweak this value if needed */
+    margin-left: 0 !important;
+    transform: translateY(-2px);     /* tiny nudge if needed */
+    flex-wrap: nowrap;
+  }
+
+  /* keep anchors clickable and vertically centered */
+  footer.ak-footer .footer-social a {
+    display: inline-flex !important;
+    align-items: center;
+    padding: 6px 4px;
+  }
+  .footer-social{
+     margin-bottom: 20px;
+  }
+}
+/* Mobile Footer Fix */
+@media (max-width: 767px) {
+  .footer-content {
+    flex-direction: column;       /* stack left + right */
+    align-items: flex-start;      /* align everything to left */
+  }
+
+  .footer-right {
+    width: 100%;
+    margin-top: 10px;             /* space below text */
+    text-align: left;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: flex-start;  /* align icons to left */
+    gap: 15px;                    /* spacing between icons */
+    margin-top: 5px;
+  }
+
+  .footer-social a {
+    font-size: 1.5rem;            /* make sure icons are visible */
+  }
+}
+
+/* Lift footer content above sticky bottom nav on mobile */
+@media (max-width: 767px) {
+  footer.ak-footer {
+    padding-bottom: 80px !important;  /* add space above the sticky nav */
+  }
+
+  .footer-social {
+    margin-bottom: 20px; /* give a little extra breathing room */
+  }
+}
+/* Contact form button */
+.contact-btn {
+  background-color: #4CAF50;   /* gold */
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+  background-color:black ;   /* darker gold */
+  color: #fff;
+}
